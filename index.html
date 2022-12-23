@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css"/>
+  <title>program</title>
+  <style>
+  
+*{
+  
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+  
+  
+  </style>
+</head>
+<body>
+  
+  <canvas id="tela">
+    
+  </canvas>
+  <script>
+  
+  var tela = document.getElementById("tela");
+  tela.height = 400;
+  tela.width = 200 * 2;
+  tela.style.border = "1px solid black";
+  
+  var ctx = tela.getContext("2d");
+  
+  var sprites = new Image();
+  
+  sprites.src = "sprites.png";
+  
+  var fundo  = new Image();
+  fundo.src = "ifundo.png";
+  
+  
+  var rapaz = {
+    
+     px: 13,
+     py: 17,
+     cx: 70,
+     cy: 106,
+     x: 40,
+     y: 250,
+     largura: 60,
+     altura: 90,
+    
+      desenhar: function(){
+  
+      ctx.drawImage(sprites,this.px, this.py, this.cx, this.cy, this.x, this.y, this.largura, this.altura);  
+      
+    }
+    
+  }
+  
+  
+  var conta = 0;
+  
+  var tempo = setInterval(function(){
+    
+    conta++;
+    console.log(conta);
+    
+    if(conta == 5){
+      
+      //frame 2
+      rapaz.px = 83;
+      rapaz.py = 15;
+      rapaz.cx = 75;
+      rapaz.cy = 109;
+      
+    }
+    
+    if(conta == 10){
+      
+      //frame 3
+      rapaz.px = 159;
+      rapaz.py = 17;
+      rapaz.cx = 80;
+      rapaz.cy = 105; 
+      
+    }
+    
+    if(conta == 15){
+      
+      //frame 4
+      rapaz.px = 236;
+      rapaz.py = 17;
+      rapaz.cx = 75;
+      rapaz.cy = 106;
+      
+    }
+    
+    if(conta == 20){
+      
+      //frame 5
+      rapaz.px = 307;
+      rapaz.py = 17;
+      rapaz.cx = 73;
+      rapaz.cy = 106;
+      
+    }
+    
+    if(conta == 25){
+      
+      //frame 6
+      rapaz.px = 382;
+      rapaz.py = 17;
+      rapaz.cx = 75;
+      rapaz.cy = 106; 
+      
+      
+    }
+    
+    if(conta == 26){
+      
+      conta = 0;
+    }
+    
+    rapaz.x += 3;
+    
+    
+    
+    
+  }, 20);
+  
+  
+  
+  
+  
+  function loop(){
+    
+    ctx.clearRect(0, 0, tela.width, tela.height);
+   //ctx.drawImage(fundo, 0, 0, 1920, 1080, 0, 0, tela.width, tela.height);
+    
+    ctx.strokeStyle = "gray";
+    ctx.moveTo(50, 240)
+    ctx.lineTo(tela.width, 240);
+    ctx.stroke();
+    ctx.moveTo(50,240);
+    ctx.lineTo(-10, 290);
+    ctx.moveTo(50, 240);
+    ctx.lineTo(50, 0);
+    ctx.stroke();
+    
+    rapaz.desenhar();
+    
+      if(rapaz.x > tela.width + rapaz.largura){
+        
+        rapaz.x = 10 - rapaz.largura;
+      }
+   
+    requestAnimationFrame(loop);
+  }
+  
+  loop();
+ 
+  
+  </script>
+</body>
+</html>
